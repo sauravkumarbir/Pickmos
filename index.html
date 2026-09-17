@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Pickmos AI — Create Anything</title>
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
-  <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFNKX6LRHS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,9 +25,6 @@
   </script>
 
   <style>
-    /* =====================================================
-       RESET
-    ===================================================== */
     * {
       margin: 0;
       padding: 0;
@@ -35,9 +37,9 @@
 
     body {
       font-family: "Inter", sans-serif;
-      background: #030303;
       color: #fff;
-      line-height: 1.5;
+      background: #06120e;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
@@ -49,12 +51,28 @@
     button {
       font-family: inherit;
       cursor: pointer;
-      border: none;
     }
 
     /* =====================================================
-       PREMIUM AI BACKGROUND
+       PAGE LAYOUT
     ===================================================== */
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =====================================================
+       BACKGROUND
+    ===================================================== */
+
     #ai-background {
       position: fixed;
       inset: 0;
@@ -62,128 +80,161 @@
       height: 100%;
       z-index: -20;
       pointer-events: none;
-      background: #030303;
     }
 
-    /* =====================================================
-       BACKGROUND GRID
-    ===================================================== */
     .ai-grid {
       position: fixed;
       inset: 0;
       z-index: -18;
       pointer-events: none;
-      opacity: .22;
+      opacity: .12;
+
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 70px 70px;
-      mask-image: radial-gradient(ellipse at center, black 10%, transparent 78%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 78%);
-      animation: gridMove 20s linear infinite;
+        linear-gradient(
+          rgba(210,255,205,.055) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(210,255,205,.055) 1px,
+          transparent 1px
+        );
+
+      background-size: 48px 48px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          transparent,
+          #000 15%,
+          #000 80%,
+          transparent
+        );
+
+      -webkit-mask-image:
+        linear-gradient(
+          to bottom,
+          transparent,
+          #000 15%,
+          #000 80%,
+          transparent
+        );
     }
 
-    @keyframes gridMove {
-      from { transform: translateY(0); }
-      to { transform: translateY(70px); }
-    }
-
-    /* =====================================================
-       RADIAL GLOW
-    ===================================================== */
-    .glow-one,
-    .glow-two,
-    .glow-three {
+    .glow {
       position: fixed;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(90px);
+      filter: blur(110px);
       z-index: -19;
-      opacity: .18;
     }
 
     .glow-one {
-      width: 420px;
-      height: 420px;
-      top: -180px;
-      left: 15%;
-      background: rgba(255,255,255,.15);
-      animation: glowFloatOne 12s ease-in-out infinite;
+      width: 600px;
+      height: 600px;
+      top: -300px;
+      left: -150px;
+      background: rgba(255, 182, 72, .14);
+      animation: glowOne 14s ease-in-out infinite;
     }
 
     .glow-two {
-      width: 500px;
-      height: 500px;
-      right: -220px;
-      top: 30%;
-      background: rgba(110,130,255,.10);
-      animation: glowFloatTwo 15s ease-in-out infinite;
+      width: 700px;
+      height: 700px;
+      right: -350px;
+      top: 15%;
+      background: rgba(70, 210, 125, .13);
+      animation: glowTwo 17s ease-in-out infinite;
     }
 
     .glow-three {
-      width: 350px;
-      height: 350px;
-      bottom: -150px;
-      left: 20%;
-      background: rgba(255,255,255,.09);
-      animation: glowFloatThree 13s ease-in-out infinite;
+      width: 600px;
+      height: 600px;
+      left: 25%;
+      bottom: -350px;
+      background: rgba(85, 130, 255, .10);
+      animation: glowThree 18s ease-in-out infinite;
     }
 
-    @keyframes glowFloatOne {
+    @keyframes glowOne {
       0%,100% { transform: translate(0,0); }
-      50% { transform: translate(120px,70px); }
+      50% { transform: translate(120px,80px); }
     }
 
-    @keyframes glowFloatTwo {
+    @keyframes glowTwo {
       0%,100% { transform: translate(0,0); }
-      50% { transform: translate(-100px,-60px); }
+      50% { transform: translate(-120px,80px); }
     }
 
-    @keyframes glowFloatThree {
+    @keyframes glowThree {
       0%,100% { transform: translate(0,0); }
-      50% { transform: translate(80px,-70px); }
+      50% { transform: translate(80px,-90px); }
     }
 
-    /* =====================================================
-       BACKGROUND VIGNETTE
-    ===================================================== */
     .background-overlay {
       position: fixed;
       inset: 0;
       z-index: -10;
       pointer-events: none;
-      background: radial-gradient(circle at center, transparent 15%, rgba(0,0,0,.22) 60%, rgba(0,0,0,.72) 100%);
+
+      background:
+        radial-gradient(
+          ellipse at 50% 75%,
+          rgba(140,220,125,.10),
+          transparent 42%
+        ),
+        radial-gradient(
+          circle at 75% 8%,
+          rgba(210,230,255,.07),
+          transparent 25%
+        ),
+        radial-gradient(
+          ellipse at center,
+          transparent 20%,
+          rgba(0,0,0,.22) 65%,
+          rgba(0,0,0,.72) 100%
+        );
     }
 
     /* =====================================================
        NAVBAR
     ===================================================== */
+
     .navbar {
       position: sticky;
       top: 0;
-      z-index: 999;
-      background: rgba(3,3,3,.68);
+      z-index: 1000;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(4,13,10,.94),
+          rgba(4,13,10,.70)
+        );
+
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+
+      border-bottom:
+        1px solid rgba(190,255,190,.08);
+
       padding: 15px 0;
     }
 
     .nav-inner {
-      width: min(900px,92%);
+      width: min(900px, 92%);
       margin: auto;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    /* =====================================================
-       LOGO
-    ===================================================== */
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
+
       font-size: 20px;
       font-weight: 800;
     }
@@ -191,18 +242,20 @@
     .logo-mark {
       width: 32px;
       height: 32px;
+
       display: grid;
       place-items: center;
+
       background: #fff;
-      color: #f91616;
+      color: #101612;
+
       border-radius: 8px;
-      font-weight: 900;
-      box-shadow: 0 0 25px rgba(255,255,255,.08);
     }
 
     /* =====================================================
        FOUNDER MENU
     ===================================================== */
+
     .founder-menu {
       position: relative;
     }
@@ -211,21 +264,33 @@
       display: flex;
       align-items: center;
       gap: 8px;
+
       padding: 8px 13px;
+
       color: #aaa;
+
+      background:
+        rgba(10,25,18,.55);
+
+      border:
+        1px solid rgba(200,255,195,.10);
+
+      border-radius: 9px;
+
       font-size: 14px;
       font-weight: 600;
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 9px;
+
       transition: .25s ease;
     }
 
     .founder-button:hover {
       color: #fff;
-      background: rgba(255,255,255,.075);
-      border-color: rgba(255,255,255,.2);
-      box-shadow: 0 0 25px rgba(255,255,255,.04);
+
+      background:
+        rgba(25,55,38,.72);
+
+      border-color:
+        rgba(200,255,195,.2);
     }
 
     .founder-button svg {
@@ -236,80 +301,85 @@
     .founder-arrow {
       width: 12px !important;
       height: 12px !important;
-      transition: transform .3s ease;
+      transition: transform .25s ease;
     }
 
     .founder-menu.active .founder-arrow {
       transform: rotate(180deg);
     }
 
-    /* =====================================================
-       FOUNDER DROPDOWN
-    ===================================================== */
     .founder-dropdown {
       position: absolute;
+
       top: calc(100% + 12px);
       right: 0;
+
       width: 290px;
+
       padding: 18px;
-      background: rgba(12,12,12,.94);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255,255,255,.1);
+
+      background:
+        rgba(6,17,13,.97);
+
+      backdrop-filter: blur(25px);
+
+      border:
+        1px solid rgba(200,255,195,.11);
+
       border-radius: 16px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.7);
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,.7);
+
       opacity: 0;
       visibility: hidden;
-      transform: translateY(-12px) scale(.95);
-      transform-origin: top right;
+
+      transform:
+        translateY(-10px)
+        scale(.96);
+
       transition: .25s ease;
     }
 
     .founder-menu.active .founder-dropdown {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0) scale(1);
-    }
 
-    .founder-dropdown::before {
-      content: "";
-      position: absolute;
-      top: -6px;
-      right: 24px;
-      width: 11px;
-      height: 11px;
-      background: #0c0c0c;
-      border-left: 1px solid rgba(255,255,255,.1);
-      border-top: 1px solid rgba(255,255,255,.1);
-      transform: rotate(45deg);
+      transform:
+        translateY(0)
+        scale(1);
     }
 
     .founder-profile {
       display: flex;
       align-items: center;
       gap: 12px;
+
       padding-bottom: 15px;
       margin-bottom: 15px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.07);
     }
 
     .founder-avatar {
       width: 52px;
       height: 52px;
+
       display: grid;
       place-items: center;
-      background: #fff;
-      color: #050505;
+
       border-radius: 13px;
-      font-size: 15px;
+
+      background: #fff;
+      color: #050805;
+
       font-weight: 800;
-      box-shadow: 0 0 25px rgba(255,255,255,.08);
     }
 
     .founder-name {
       font-size: 16px;
       font-weight: 700;
-      margin-bottom: 2px;
     }
 
     .founder-role {
@@ -317,375 +387,302 @@
       font-size: 12px;
     }
 
-    .founder-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
     .founder-contact a {
       display: flex;
       align-items: center;
       gap: 10px;
+
       padding: 9px;
-      border-radius: 8px;
+
       color: #999;
+
       font-size: 12px;
+
+      border-radius: 8px;
+
       transition: .2s ease;
     }
 
     .founder-contact a:hover {
       color: #fff;
-      background: rgba(255,255,255,.06);
-      transform: translateX(3px);
-    }
-
-    .founder-contact svg {
-      width: 17px;
-      height: 17px;
-      flex-shrink: 0;
+      background: rgba(150,255,160,.06);
     }
 
     /* =====================================================
-       MAIN
+       CONTENT
     ===================================================== */
+
     .container {
-      width: min(900px,92%);
+      width: min(900px, 92%);
       margin: auto;
-      padding: 70px 0 90px;
+      padding: 80px 0 100px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 7px 13px;
-      border: 1px solid rgba(255,255,255,.12);
+    .hero {
+      min-height: 650px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .launching-soon {
+      width: fit-content;
+
+      margin: 0 auto 38px;
+
+      padding: 9px 19px;
+
+      border:
+        1px solid rgba(205,255,196,.16);
+
       border-radius: 100px;
+
+      background:
+        rgba(10,25,18,.65);
+
+      color: #fff;
+
       font-size: 12px;
-      color: #aaa;
-      margin-bottom: 20px;
-      background: rgba(255,255,255,.025);
-      backdrop-filter: blur(8px);
-      animation: badgeFloat 4s ease-in-out infinite;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+
+      box-shadow:
+        0 8px 40px rgba(0,0,0,.25);
+
+      animation:
+        launchPulse 3s ease-in-out infinite;
     }
 
-    @keyframes badgeFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+    @keyframes launchPulse {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
     }
 
     h1 {
-      max-width: 750px;
-      font-size: clamp(38px,7vw,62px);
-      line-height: 1.08;
-      letter-spacing: -2.5px;
-      margin-bottom: 18px;
+      max-width: 760px;
+      margin: 0 auto 20px;
+
+      text-align: center;
+
+      font-size:
+        clamp(42px, 7vw, 68px);
+
+      line-height: 1.05;
+
+      letter-spacing: -3px;
     }
 
     h1 span {
-      color: #777;
-      background: linear-gradient(90deg, #666, #aaa, #666);
+      background:
+        linear-gradient(
+          90deg,
+          #7c9d7e,
+          #d8efc9,
+          #7c9d7e
+        );
+
       background-size: 200% auto;
+
       -webkit-background-clip: text;
       background-clip: text;
+
       -webkit-text-fill-color: transparent;
-      animation: textShine 5s linear infinite;
+
+      animation:
+        textShine 5s linear infinite;
     }
 
     @keyframes textShine {
-      to { background-position: 200% center; }
+      to {
+        background-position: 200% center;
+      }
     }
 
     .subtitle {
-      color: #888;
+      max-width: 560px;
+
+      margin: 0 auto;
+
+      color: #8fa095;
+
+      text-align: center;
+
       font-size: 16px;
-      max-width: 530px;
-      margin-bottom: 35px;
-    }
-
-    /* =====================================================
-       LAUNCHING
-    ===================================================== */
-    .launching-soon {
-      width: fit-content;
-      margin: 0 auto 55px;
-      padding: 9px 19px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 100px;
-      background: rgba(255,255,255,.035);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      box-shadow: 0 0 30px rgba(255,255,255,.04);
-      animation: launchAnimation 2.5s ease-in-out infinite;
-    }
-
-    @keyframes launchAnimation {
-      0%,100% {
-        opacity: .55;
-        transform: translateY(0);
-        box-shadow: 0 0 0 rgba(255,255,255,0);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(-4px);
-        box-shadow: 0 0 35px rgba(255,255,255,.11);
-      }
     }
 
     /* =====================================================
        GENERATOR
     ===================================================== */
+
     .generator {
-      position: relative;
-      background: rgba(12,12,12,.73);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 18px;
+      margin-top: 60px;
+
       padding: 24px;
-      margin-bottom: 60px;
-      box-shadow: 0 25px 70px rgba(0,0,0,.28);
-      overflow: hidden;
-    }
 
-    .generator::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.15), transparent);
-      background-size: 200% 200%;
-      animation: borderMove 5s linear infinite;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
+      background:
+        linear-gradient(
+          145deg,
+          rgba(10,25,20,.84),
+          rgba(5,14,12,.72)
+        );
 
-    @keyframes borderMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+      backdrop-filter: blur(18px);
+
+      border:
+        1px solid rgba(180,255,190,.10);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.38);
     }
 
     textarea {
-      position: relative;
       width: 100%;
       min-height: 115px;
-      background: rgba(3,3,3,.8);
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 12px;
+
       padding: 16px;
+
       color: #fff;
+
+      background:
+        rgba(3,10,8,.8);
+
+      border:
+        1px solid rgba(180,255,190,.09);
+
+      border-radius: 12px;
+
+      outline: none;
+
+      resize: vertical;
+
       font-family: inherit;
       font-size: 15px;
-      resize: vertical;
-      outline: none;
-      margin-bottom: 16px;
-      transition: .2s ease;
     }
 
     textarea:focus {
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 0 30px rgba(255,255,255,.035);
+      border-color:
+        rgba(200,255,200,.28);
+
+      box-shadow:
+        0 0 30px rgba(120,230,130,.04);
     }
 
     textarea::placeholder {
-      color: #5f5f5f;
+      color: #5f6d62;
     }
 
     .controls {
       display: flex;
       gap: 12px;
-      flex-wrap: wrap;
+
+      margin-top: 16px;
       margin-bottom: 16px;
+
+      flex-wrap: wrap;
     }
 
     select {
-      background: #080808;
-      border: 1px solid rgba(255,255,255,.1);
-      color: #fff;
       padding: 10px 14px;
+
+      color: #fff;
+
+      background: #080f0c;
+
+      border:
+        1px solid rgba(200,255,195,.1);
+
       border-radius: 8px;
-      font-size: 14px;
-      outline: none;
     }
 
     .generate-btn {
-      background: #fff;
-      color: #050505;
+      width: 100%;
+
       padding: 14px 28px;
+
+      color: #071009;
+
+      background: #eaffdf;
+
       border-radius: 10px;
+
       font-size: 15px;
       font-weight: 700;
-      width: 100%;
+
       transition: .25s ease;
     }
 
     .generate-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(255,255,255,.1);
-    }
 
-    .generate-btn:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* =====================================================
-       LOADING
-    ===================================================== */
-    .loading {
-      display: none;
-      text-align: center;
-      padding: 40px;
-      color: #888;
-    }
-
-    .loading.show {
-      display: block;
-    }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid #333;
-      border-top-color: #fff;
-      border-radius: 50%;
-      margin: 0 auto 12px;
-      animation: spin .8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* =====================================================
-       RESULT
-    ===================================================== */
-    .result-area {
-      display: none;
-      margin-top: 24px;
-      text-align: center;
-    }
-
-    .result-area.show {
-      display: block;
-    }
-
-    .result-img {
-      max-width: 100%;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.1);
-      margin-bottom: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    /* =====================================================
-       VIDEO
-    ===================================================== */
-    .video-section {
-      background: rgba(12,12,12,.73);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 60px;
-      text-align: center;
-    }
-
-    .video-section h2 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    .video-section p {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .video-wrapper {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.1);
-      background: #000;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
-    }
-
-    .video-wrapper video {
-      width: 100%;
-      display: block;
-      max-height: 420px;
-      object-fit: cover;
-    }
-
-    .video-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(0,0,0,.7);
-      color: #fff;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      backdrop-filter: blur(6px);
-      z-index: 2;
+      box-shadow:
+        0 12px 35px rgba(150,240,150,.12);
     }
 
     /* =====================================================
        FEATURES
     ===================================================== */
+
+    .features-section {
+      padding-top: 20px;
+    }
+
     .section-title {
       font-size: 25px;
       margin-bottom: 8px;
-      letter-spacing: -.7px;
     }
 
     .section-sub {
-      color: #666;
+      color: #748177;
       font-size: 14px;
       margin-bottom: 24px;
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(200px, 1fr)
+        );
+
       gap: 14px;
-      margin-bottom: 80px;
     }
 
     .feature {
-      position: relative;
-      background: rgba(10,10,10,.68);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,.075);
-      border-radius: 13px;
       padding: 20px;
-      overflow: hidden;
-      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-    }
 
-    .feature::after {
-      content: "";
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      top: -50px;
-      right: -50px;
-      background: rgba(255,255,255,.05);
-      border-radius: 50%;
-      filter: blur(25px);
+      background:
+        rgba(8,22,16,.68);
+
+      backdrop-filter: blur(14px);
+
+      border:
+        1px solid rgba(180,255,190,.075);
+
+      border-radius: 13px;
+
+      transition: .3s ease;
     }
 
     .feature:hover {
       transform: translateY(-5px);
-      border-color: rgba(255,255,255,.16);
-      box-shadow: 0 20px 50px rgba(0,0,0,.3);
+
+      border-color:
+        rgba(180,255,190,.16);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.3);
     }
 
     .feature h3 {
@@ -694,321 +691,2223 @@
     }
 
     .feature p {
+      color: #708078;
       font-size: 13px;
-      color: #707070;
-    }
-
-    .soon {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 11px;
-      color: #aaa;
-      background: rgba(255,255,255,.06);
-      padding: 3px 8px;
-      border-radius: 4px;
     }
 
     /* =====================================================
        FOOTER
     ===================================================== */
+
     footer {
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 35px 0;
-      text-align: center;
-      color: #4f4f4f;
+      position: relative;
+      z-index: 5;
+
+      width: 100%;
+
+      margin-top: auto;
+
+      padding:
+        28px 20px;
+
+      border-top:
+        1px solid rgba(180,255,190,.08);
+
+      background:
+        rgba(3,11,8,.88);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .footer-inner {
+      width: min(900px, 100%);
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 25px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      color: #657269;
+
       font-size: 12px;
-      background: rgba(3,3,3,.65);
-      backdrop-filter: blur(15px);
+
+      transition:
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #d9f7d0;
+      transform: translateY(-2px);
+    }
+
+    .footer-links svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
 
     /* =====================================================
-       MOBILE
+       MOBILE FOOTER
     ===================================================== */
-    @media (max-width:600px) {
-      .nav-inner { width: 92%; }
-      .logo { font-size: 17px; }
-      .logo-mark { width: 30px; height: 30px; }
-      .founder-button { font-size: 13px; padding: 7px 10px; }
-      .founder-dropdown { width: 270px; right: -5px; }
-      .container { width: 92%; padding-top: 45px; }
-      h1 { font-size: 36px; letter-spacing: -1.7px; }
-      .generator, .video-section { padding: 16px; }
-      .ai-grid { background-size: 45px 45px; }
-    }
 
-    /* =====================================================
-       REDUCE MOTION
-    ===================================================== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    @media (max-width: 600px) {
+
+      .container {
+        width: 92%;
+        padding-top: 45px;
+        padding-bottom: 70px;
       }
+
+      .hero {
+        min-height: 560px;
+      }
+
+      h1 {
+        font-size: 39px;
+        letter-spacing: -2px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      .generator {
+        padding: 16px;
+      }
+
+      .founder-dropdown {
+        width: 270px;
+        right: -5px;
+      }
+
+      .footer-inner {
+        min-height: 30px;
+      }
+
+      footer {
+        padding:
+          25px 16px;
+      }
+
+      .footer-links a {
+        font-size: 12px;
+      }
+
+      .ai-grid {
+        background-size: 38px 38px;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .founder-button {
+        padding: 7px 9px;
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .footer-links a {
+        font-size: 11px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
     }
   </style>
 </head>
 
+
 <body>
 
+<div class="page">
+
   <!-- =====================================================
-       PREMIUM AI BACKGROUND
+       BACKGROUND
   ===================================================== -->
+
   <canvas id="ai-background"></canvas>
+
   <div class="ai-grid"></div>
-  <div class="glow-one"></div>
-  <div class="glow-two"></div>
-  <div class="glow-three"></div>
+
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+  <div class="glow glow-three"></div>
+
   <div class="background-overlay"></div>
+
 
   <!-- =====================================================
        NAVBAR
   ===================================================== -->
+
   <header class="navbar">
+
     <div class="nav-inner">
 
       <a href="#" class="logo">
-        <!-- <span class="logo-mark">P</span>
-        Pickmos -->
+        <div class="logo-mark">P</div>
+        Pickmos
       </a>
 
-      <!-- FOUNDER -->
-      <div class="founder-menu" id="founderMenu">
-        <button class="founder-button" id="founderButton" type="button" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+
+      <div
+        class="founder-menu"
+        id="founderMenu"
+      >
+
+        <button
+          class="founder-button"
+          id="founderButton"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle
+              cx="12"
+              cy="8"
+              r="4"
+            />
+
+            <path
+              d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"
+            />
           </svg>
-           SauravBir
-          <svg class="founder-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"/>
+
+          SauravBir
+
+          <svg
+            class="founder-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline
+              points="6 9 12 15 18 9"
+            />
           </svg>
+
         </button>
 
-        <!-- FOUNDER CARD -->
+
         <div class="founder-dropdown">
+
           <div class="founder-profile">
-            <div class="founder-avatar">SB</div>
-            <div>
-              <div class="founder-name">Saurav Bir</div>
-              <div class="founder-role">Founder, Pickmos AI</div>
+
+            <div class="founder-avatar">
+              SB
             </div>
+
+            <div>
+
+              <div class="founder-name">
+                Saurav Bir
+              </div>
+
+              <div class="founder-role">
+                Founder, Pickmos AI
+              </div>
+
+            </div>
+
           </div>
 
-          <div class="founder-contact">
-            <!-- LinkedIn -->
-           
 
-            <!-- Gmail -->
+          <div class="founder-contact">
+
             <a href="mailto:sauravbir6@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                <polyline points="3,7 1
-                  2,13 21,7"/>
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                />
+
+                <polyline
+                  points="3,7 12,13 21,7"
+                />
+
               </svg>
+
               sauravbir6@gmail.com
+
             </a>
 
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </header>
+
 
   <!-- =====================================================
        MAIN
   ===================================================== -->
-  <main class="container">
-    <!-- <div class="badge">✦ AI Image Generator</div> -->
 
-    <div class="launching-soon">✦ Pickmos - sauravbir6@gmail.com
-            ✦ </div>
+  <main>
+
+    <div class="container">
+      <div class="launching-soon">
+          ✦ Pickmos - sauravbir6@gmail.com ✦
+        </div>
+
+           <p class="subtitle">
+          An AI-powered creative playground for turning
+          imagination into something real.
+        </p>
+
+      <!-- <section class="hero">
+
+        
+
+
+        <h1>
+          Create your own
+          <span>digital world.</span>
+        </h1>
+
+
+        <p class="subtitle">
+          An AI-powered creative playground for turning
+          imagination into something real.
+        </p>
+
+
+        <div class="generator">
+
+          <textarea
+            placeholder="Describe what you want to create..."
+          ></textarea>
+
+
+          <div class="controls">
+
+            <select>
+              <option>Image</option>
+              <option>Character</option>
+              <option>Environment</option>
+              <option>Concept Art</option>
+            </select>
+
+          </div>
+
+
+          <button class="generate-btn">
+            Create
+          </button>
+
+        </div>
+
+      </section> -->
+
+
+      <!-- =====================================================
+           FEATURES
+      ===================================================== -->
+
+      <!-- <section class="features-section">
+
+        <h2 class="section-title">
+          Built for imagination
+        </h2>
+
+        <p class="section-sub">
+          Explore, create and bring your ideas to life.
+        </p>
+
+
+        <div class="features">
+
+          <div class="feature">
+
+            <h3>
+              AI Creation
+            </h3>
+
+            <p>
+              Turn simple ideas into unique visual concepts.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <h3>
+              Original Worlds
+            </h3>
+
+            <p>
+              Build characters, environments and stories.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <h3>
+              Indie First
+            </h3>
+
+            <p>
+              Designed around creativity and experimentation.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section> -->
+
+    </div>
+
   </main>
 
-  <!-- =====================================================
-       FOOTER
-  ===================================================== -->
- <footer>
-  <!-- <p>© 2026 Pickmos AI. All rights reserved.</p>
-  <p style="margin-top:8px;">CEO - Saurav Bir</p> -->
-
-  <div class="footer-links">
-    <a href="https://x.com/sauravbir" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px;">
-      <!-- X (Twitter) logo -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-      @sauravbir
-    </a>
-  </div>
-</footer>
 
   <!-- =====================================================
-       JAVASCRIPT
+       FOOTER — ALWAYS LAST
   ===================================================== -->
-  <script>
-    /* =====================================================
-       PREMIUM NEURAL NETWORK
-    ===================================================== */
-    const canvas = document.getElementById("ai-background");
-    const ctx = canvas.getContext("2d");
 
-    let width, height;
-    let particles = [];
-    let mouse = { x: null, y: null };
+  <footer>
 
-    function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      createParticles();
-    }
+    <div class="footer-inner">
 
-    window.addEventListener("mousemove", function(event) {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    });
+      <div class="footer-links">
 
-    window.addEventListener("mouseleave", function() {
-      mouse.x = null;
-      mouse.y = null;
-    });
+        <a
+          href="https://x.com/sauravbir"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - .5) * .28;
-        this.vy = (Math.random() - .5) * .28;
-        this.radius = Math.random() * 1.5 + .4;
-        this.alpha = Math.random() * .4 + .08;
-        this.pulse = Math.random() * Math.PI * 2;
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+
+          </svg>
+
+          @sauravbir
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     INDIE MONSTER WORLD
+===================================================== -->
+
+<script>
+
+const canvas =
+  document.getElementById("ai-background");
+
+const ctx =
+  canvas.getContext("2d");
+
+let width;
+let height;
+
+let dpr =
+  Math.min(
+    window.devicePixelRatio || 1,
+    2
+  );
+
+
+let stars = [];
+let fireflies = [];
+let leaves = [];
+let creatures = [];
+
+
+let mouse = {
+  x: null,
+  y: null
+};
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+function resizeCanvas() {
+
+  width =
+    window.innerWidth;
+
+  height =
+    window.innerHeight;
+
+
+  canvas.width =
+    width * dpr;
+
+  canvas.height =
+    height * dpr;
+
+
+  canvas.style.width =
+    width + "px";
+
+  canvas.style.height =
+    height + "px";
+
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+
+  createWorld();
+
+}
+
+
+/* =====================================================
+   MOUSE
+===================================================== */
+
+window.addEventListener(
+  "mousemove",
+  e => {
+
+    mouse.x =
+      e.clientX;
+
+    mouse.y =
+      e.clientY;
+
+  }
+);
+
+
+window.addEventListener(
+  "mouseleave",
+  () => {
+
+    mouse.x = null;
+    mouse.y = null;
+
+  }
+);
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+class Star {
+
+  constructor() {
+
+    this.x =
+      Math.random() * width;
+
+    this.y =
+      Math.random() *
+      height *
+      .63;
+
+    this.size =
+      Math.random() * 1.5 + .3;
+
+    this.alpha =
+      Math.random() * .45 + .1;
+
+    this.phase =
+      Math.random() *
+      Math.PI * 2;
+
+  }
+
+
+  update() {
+
+    this.phase += .01;
+
+  }
+
+
+  draw() {
+
+    const pulse =
+      .55 +
+      Math.sin(this.phase) * .35;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      this.x,
+      this.y,
+      this.size,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      `rgba(
+        230,
+        245,
+        220,
+        ${this.alpha * pulse}
+      )`;
+
+
+    ctx.fill();
+
+  }
+
+}
+
+
+/* =====================================================
+   FIREFLIES
+===================================================== */
+
+class Firefly {
+
+  constructor() {
+    this.reset(true);
+  }
+
+
+  reset(first = false) {
+
+    this.x =
+      Math.random() * width;
+
+    this.y =
+      first
+        ? Math.random() * height
+        : height + 20;
+
+    this.radius =
+      Math.random() * 1.8 + .7;
+
+    this.speed =
+      Math.random() * .18 + .06;
+
+    this.phase =
+      Math.random() *
+      Math.PI * 2;
+
+  }
+
+
+  update() {
+
+    this.y -= this.speed;
+
+    this.x +=
+      Math.sin(
+        this.phase
+      ) * .12;
+
+    this.phase += .025;
+
+
+    if (
+      mouse.x !== null &&
+      mouse.y !== null
+    ) {
+
+      const dx =
+        this.x - mouse.x;
+
+      const dy =
+        this.y - mouse.y;
+
+      const distance =
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
+
+
+      if (distance < 120) {
+
+        this.x +=
+          dx * .004;
+
+        this.y +=
+          dy * .004;
+
       }
 
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.pulse += .01;
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const influence = 150;
-
-          if (distance < influence) {
-            const force = (1 - distance / influence) * .012;
-            this.x += dx * force;
-            this.y += dy * force;
-          }
-        }
-
-        if (this.x < -20) this.x = width + 20;
-        if (this.x > width + 20) this.x = -20;
-        if (this.y < -20) this.y = height + 20;
-        if (this.y > height + 20) this.y = -20;
-      }
-
-      draw() {
-        const pulse = Math.sin(this.pulse) * .3 + .7;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${this.alpha * pulse})`;
-        ctx.fill();
-
-        if (this.radius > 1.2) {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255,255,255,${this.alpha * .04})`;
-          ctx.fill();
-        }
-      }
     }
 
-    function createParticles() {
-      particles = [];
-      const density = window.innerWidth < 700 ? 55 : 105;
-      for (let i = 0; i < density; i++) {
-        particles.push(new Particle());
+
+    if (this.y < -20) {
+      this.reset();
+    }
+
+  }
+
+
+  draw() {
+
+    const alpha =
+      .35 +
+      Math.sin(this.phase) *
+      .25;
+
+
+    const glow =
+      ctx.createRadialGradient(
+        this.x,
+        this.y,
+        0,
+        this.x,
+        this.y,
+        12
+      );
+
+
+    glow.addColorStop(
+      0,
+      `rgba(210,255,135,${alpha})`
+    );
+
+
+    glow.addColorStop(
+      1,
+      "rgba(210,255,135,0)"
+    );
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      this.x,
+      this.y,
+      12,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle = glow;
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      this.x,
+      this.y,
+      this.radius,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      `rgba(230,255,175,${alpha})`;
+
+    ctx.fill();
+
+  }
+
+}
+
+
+/* =====================================================
+   LEAVES
+===================================================== */
+
+class Leaf {
+
+  constructor() {
+    this.reset(true);
+  }
+
+
+  reset(first = false) {
+
+    this.x =
+      Math.random() * width;
+
+    this.y =
+      first
+        ? Math.random() * height
+        : -30;
+
+    this.size =
+      Math.random() * 3 + 2;
+
+    this.speed =
+      Math.random() * .15 + .05;
+
+    this.phase =
+      Math.random() * 6.28;
+
+  }
+
+
+  update() {
+
+    this.y += this.speed;
+
+    this.x +=
+      Math.sin(this.phase) * .12;
+
+    this.phase += .012;
+
+
+    if (this.y > height + 30) {
+      this.reset();
+    }
+
+  }
+
+
+  draw() {
+
+    ctx.save();
+
+    ctx.translate(
+      this.x,
+      this.y
+    );
+
+    ctx.rotate(
+      this.phase
+    );
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      0,
+      this.size * 1.7,
+      this.size,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "rgba(100,180,100,.16)";
+
+    ctx.fill();
+
+    ctx.restore();
+
+  }
+
+}
+
+
+/* =====================================================
+   ORIGINAL INDIE CREATURES
+===================================================== */
+
+class Creature {
+
+  constructor(type) {
+
+    this.type = type;
+
+    this.x =
+      Math.random() * width;
+
+    this.baseY =
+      height *
+      (.55 +
+       Math.random() * .28);
+
+    this.y =
+      this.baseY;
+
+    this.size =
+      18 +
+      Math.random() * 13;
+
+    this.speed =
+      (.15 +
+       Math.random() * .18)
+      *
+      (Math.random() > .5 ? 1 : -1);
+
+    this.phase =
+      Math.random() * 6.28;
+
+    this.bob =
+      Math.random() * 6.28;
+
+    this.direction =
+      this.speed > 0 ? 1 : -1;
+
+  }
+
+
+  update() {
+
+    this.x += this.speed;
+
+    this.phase += .025;
+
+    this.bob += .035;
+
+
+    this.y =
+      this.baseY +
+      Math.sin(this.bob) * 3;
+
+
+    if (
+      this.x >
+      width + 70
+    ) {
+
+      this.x = -70;
+
+    }
+
+
+    if (
+      this.x <
+      -70
+    ) {
+
+      this.x =
+        width + 70;
+
+    }
+
+
+    /* Move slightly away from cursor */
+
+    if (
+      mouse.x !== null &&
+      mouse.y !== null
+    ) {
+
+      const dx =
+        this.x -
+        mouse.x;
+
+      const dy =
+        this.y -
+        mouse.y;
+
+      const distance =
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
+
+
+      if (
+        distance < 150
+      ) {
+
+        this.x +=
+          dx * .002;
+
+        this.y +=
+          dy * .002;
+
       }
+
     }
 
-    function drawConnections() {
-      const maxDistance = window.innerWidth < 700 ? 105 : 145;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const p1 = particles[i];
-          const p2 = particles[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+  }
 
-          if (distance < maxDistance) {
-            const opacity = (1 - distance / maxDistance) * .12;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
-            ctx.lineWidth = .6;
-            ctx.stroke();
-          }
-        }
-      }
+
+  draw() {
+
+    ctx.save();
+
+    ctx.translate(
+      this.x,
+      this.y
+    );
+
+
+    if (
+      this.direction < 0
+    ) {
+
+      ctx.scale(
+        -1,
+        1
+      );
+
     }
 
-    function drawMouseConnections() {
-      if (mouse.x === null || mouse.y === null) return;
-      const distanceLimit = 190;
 
-      particles.forEach(particle => {
-        const dx = particle.x - mouse.x;
-        const dy = particle.y - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    if (
+      this.type === "sprout"
+    ) {
 
-        if (distance < distanceLimit) {
-          const opacity = (1 - distance / distanceLimit) * .2;
-          ctx.beginPath();
-          ctx.moveTo(mouse.x, mouse.y);
-          ctx.lineTo(particle.x, particle.y);
-          ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
-          ctx.lineWidth = .7;
-          ctx.stroke();
-        }
-      });
+      this.drawSprout();
+
     }
 
-    function animateBackground() {
-      ctx.clearRect(0, 0, width, height);
-      drawConnections();
-      drawMouseConnections();
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      requestAnimationFrame(animateBackground);
+
+    if (
+      this.type === "ember"
+    ) {
+
+      this.drawEmber();
+
     }
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-    animateBackground();
 
-    /* =====================================================
-       FOUNDER MENU
-    ===================================================== */
-    const founderMenu = document.getElementById("founderMenu");
-    const founderButton = document.getElementById("founderButton");
+    if (
+      this.type === "moss"
+    ) {
 
-    founderButton.addEventListener("click", function(event) {
-      event.stopPropagation();
-      const active = founderMenu.classList.toggle("active");
-      founderButton.setAttribute("aria-expanded", active);
-    });
+      this.drawMoss();
 
-    document.addEventListener("click", function(event) {
-      if (!founderMenu.contains(event.target)) {
-        founderMenu.classList.remove("active");
-        founderButton.setAttribute("aria-expanded", "false");
-      }
-    });
-  </script>
+    }
+
+
+    if (
+      this.type === "moon"
+    ) {
+
+      this.drawMoon();
+
+    }
+
+
+    ctx.restore();
+
+  }
+
+
+  /* ===================================================
+     SPROUT CREATURE
+  =================================================== */
+
+  drawSprout() {
+
+    const s =
+      this.size;
+
+
+    /* shadow */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      s * .78,
+      s * .75,
+      s * .22,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "rgba(0,0,0,.25)";
+
+    ctx.fill();
+
+
+    /* body */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      0,
+      s * .72,
+      s * .75,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#6fa66b";
+
+    ctx.fill();
+
+
+    /* ears */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      -s * .48,
+      -s * .35
+    );
+
+    ctx.lineTo(
+      -s * .72,
+      -s * .9
+    );
+
+    ctx.lineTo(
+      -s * .18,
+      -s * .56
+    );
+
+    ctx.closePath();
+
+    ctx.fillStyle =
+      "#83b978";
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      s * .48,
+      -s * .35
+    );
+
+    ctx.lineTo(
+      s * .72,
+      -s * .9
+    );
+
+    ctx.lineTo(
+      s * .18,
+      -s * .56
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* leaf */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      -s * .95,
+      s * .18,
+      s * .5,
+      -.35,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#b6d985";
+
+    ctx.fill();
+
+
+    /* eyes */
+
+    ctx.fillStyle =
+      "#102118";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      -s * .25,
+      -s * .05,
+      s * .09,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      s * .25,
+      -s * .05,
+      s * .09,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /* smile */
+
+    ctx.beginPath();
+
+    ctx.arc(
+      0,
+      s * .10,
+      s * .20,
+      0,
+      Math.PI
+    );
+
+    ctx.strokeStyle =
+      "#102118";
+
+    ctx.lineWidth = 1.5;
+
+    ctx.stroke();
+
+  }
+
+
+  /* ===================================================
+     EMBER CREATURE
+  =================================================== */
+
+  drawEmber() {
+
+    const s =
+      this.size;
+
+
+    /* glow */
+
+    const glow =
+      ctx.createRadialGradient(
+        0,
+        0,
+        0,
+        0,
+        0,
+        s * 1.8
+      );
+
+    glow.addColorStop(
+      0,
+      "rgba(255,180,80,.15)"
+    );
+
+    glow.addColorStop(
+      1,
+      "rgba(255,180,80,0)"
+    );
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      0,
+      0,
+      s * 1.8,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      glow;
+
+    ctx.fill();
+
+
+    /* body */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      0,
+      s * .72,
+      s * .62,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#b87952";
+
+    ctx.fill();
+
+
+    /* flame tail */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      -s * .55,
+      s * .05
+    );
+
+    ctx.quadraticCurveTo(
+      -s * 1.2,
+      -s * .25,
+      -s * 1.05,
+      -s * .75
+    );
+
+    ctx.quadraticCurveTo(
+      -s * .65,
+      -s * .52,
+      -s * .48,
+      -s * .75
+    );
+
+    ctx.quadraticCurveTo(
+      -s * .30,
+      -s * .30,
+      -s * .55,
+      s * .05
+    );
+
+    ctx.fillStyle =
+      "#e5a65c";
+
+    ctx.fill();
+
+
+    /* ears */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      -s * .45,
+      -s * .38
+    );
+
+    ctx.lineTo(
+      -s * .65,
+      -s * .85
+    );
+
+    ctx.lineTo(
+      -s * .12,
+      -s * .53
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      s * .45,
+      -s * .38
+    );
+
+    ctx.lineTo(
+      s * .65,
+      -s * .85
+    );
+
+    ctx.lineTo(
+      s * .12,
+      -s * .53
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* eyes */
+
+    ctx.fillStyle =
+      "#21130d";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      -s * .24,
+      -s * .04,
+      s * .09,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      s * .24,
+      -s * .04,
+      s * .09,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  /* ===================================================
+     MOSS CREATURE
+  =================================================== */
+
+  drawMoss() {
+
+    const s =
+      this.size;
+
+
+    /* body */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      0,
+      s * .85,
+      s * .58,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#507d67";
+
+    ctx.fill();
+
+
+    /* moss */
+
+    ctx.beginPath();
+
+    ctx.arc(
+      -s * .25,
+      -s * .45,
+      s * .32,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.arc(
+      s * .10,
+      -s * .52,
+      s * .28,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.arc(
+      s * .38,
+      -s * .38,
+      s * .25,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#8cb36b";
+
+    ctx.fill();
+
+
+    /* feet */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      -s * .48,
+      s * .45,
+      s * .28,
+      s * .16,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.ellipse(
+      s * .48,
+      s * .45,
+      s * .28,
+      s * .16,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#395846";
+
+    ctx.fill();
+
+
+    /* eyes */
+
+    ctx.fillStyle =
+      "#d9f0c5";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      -s * .27,
+      -s * .02,
+      s * .08,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.arc(
+      s * .27,
+      -s * .02,
+      s * .08,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  /* ===================================================
+     MOON CREATURE
+  =================================================== */
+
+  drawMoon() {
+
+    const s =
+      this.size;
+
+
+    /* body */
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      0,
+      0,
+      s * .65,
+      s * .7,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#687ca6";
+
+    ctx.fill();
+
+
+    /* moon ears */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      -s * .4,
+      -s * .42
+    );
+
+    ctx.lineTo(
+      -s * .55,
+      -s * 1.0
+    );
+
+    ctx.lineTo(
+      -s * .08,
+      -s * .55
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      s * .4,
+      -s * .42
+    );
+
+    ctx.lineTo(
+      s * .55,
+      -s * 1.0
+    );
+
+    ctx.lineTo(
+      s * .08,
+      -s * .55
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* crescent mark */
+
+    ctx.beginPath();
+
+    ctx.arc(
+      0,
+      -s * .15,
+      s * .22,
+      -.8,
+      1.9
+    );
+
+    ctx.strokeStyle =
+      "#cbd8ef";
+
+    ctx.lineWidth =
+      s * .09;
+
+    ctx.stroke();
+
+
+    /* eyes */
+
+    ctx.fillStyle =
+      "#11182a";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      -s * .22,
+      s * .05,
+      s * .08,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.arc(
+      s * .22,
+      s * .05,
+      s * .08,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+}
+
+
+/* =====================================================
+   MOUNTAINS
+===================================================== */
+
+function drawMountains() {
+
+  const base =
+    height * .76;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    0,
+    base
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .14,
+    base - 100,
+    width * .27,
+    base - 35
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .40,
+    base - 125,
+    width * .54,
+    base - 45
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .70,
+    base - 115,
+    width * .84,
+    base - 32
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .94,
+    base - 70,
+    width,
+    base - 25
+  );
+
+
+  ctx.lineTo(
+    width,
+    height
+  );
+
+  ctx.lineTo(
+    0,
+    height
+  );
+
+  ctx.closePath();
+
+
+  const gradient =
+    ctx.createLinearGradient(
+      0,
+      base - 130,
+      0,
+      height
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "rgba(18,48,37,.48)"
+  );
+
+
+  gradient.addColorStop(
+    1,
+    "rgba(2,12,8,.9)"
+  );
+
+
+  ctx.fillStyle =
+    gradient;
+
+  ctx.fill();
+
+
+  /* foreground */
+
+  const foreground =
+    height * .87;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    0,
+    foreground
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .16,
+    foreground - 45,
+    width * .32,
+    foreground
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .53,
+    foreground - 60,
+    width * .73,
+    foreground - 5
+  );
+
+
+  ctx.quadraticCurveTo(
+    width * .88,
+    foreground - 35,
+    width,
+    foreground
+  );
+
+
+  ctx.lineTo(
+    width,
+    height
+  );
+
+  ctx.lineTo(
+    0,
+    height
+  );
+
+  ctx.closePath();
+
+
+  ctx.fillStyle =
+    "rgba(2,10,7,.91)";
+
+  ctx.fill();
+
+}
+
+
+/* =====================================================
+   GRASS
+===================================================== */
+
+function drawGrass() {
+
+  const amount =
+    Math.min(
+      180,
+      Math.floor(width / 7)
+    );
+
+
+  ctx.strokeStyle =
+    "rgba(65,120,70,.22)";
+
+  ctx.lineWidth = 1;
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+    const x =
+      (i / amount) *
+      width +
+      Math.sin(i * 4.2) *
+      12;
+
+
+    const random =
+      Math.abs(
+        Math.sin(i * 53.23)
+      );
+
+
+    const h =
+      10 +
+      random * 35;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x,
+      height
+    );
+
+
+    ctx.quadraticCurveTo(
+      x + Math.sin(i) * 4,
+      height - h * .5,
+
+      x + Math.sin(i) * 7,
+      height - h
+    );
+
+
+    ctx.stroke();
+
+  }
+
+}
+
+
+/* =====================================================
+   CREATE WORLD
+===================================================== */
+
+function createWorld() {
+
+  stars = [];
+  fireflies = [];
+  leaves = [];
+  creatures = [];
+
+
+  const mobile =
+    width < 700;
+
+
+  for (
+    let i = 0;
+    i < (mobile ? 35 : 80);
+    i++
+  ) {
+
+    stars.push(
+      new Star()
+    );
+
+  }
+
+
+  for (
+    let i = 0;
+    i < (mobile ? 12 : 28);
+    i++
+  ) {
+
+    fireflies.push(
+      new Firefly()
+    );
+
+  }
+
+
+  for (
+    let i = 0;
+    i < (mobile ? 5 : 14);
+    i++
+  ) {
+
+    leaves.push(
+      new Leaf()
+    );
+
+  }
+
+
+  /* Original creatures */
+
+  const types = [
+    "sprout",
+    "ember",
+    "moss",
+    "moon"
+  ];
+
+
+  const creatureCount =
+    mobile ? 3 : 6;
+
+
+  for (
+    let i = 0;
+    i < creatureCount;
+    i++
+  ) {
+
+    creatures.push(
+      new Creature(
+        types[
+          i % types.length
+        ]
+      )
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SKY
+===================================================== */
+
+function drawSky() {
+
+  const sky =
+    ctx.createLinearGradient(
+      0,
+      0,
+      0,
+      height
+    );
+
+
+  sky.addColorStop(
+    0,
+    "#07120f"
+  );
+
+
+  sky.addColorStop(
+    .40,
+    "#091d18"
+  );
+
+
+  sky.addColorStop(
+    .75,
+    "#0b2419"
+  );
+
+
+  sky.addColorStop(
+    1,
+    "#07130d"
+  );
+
+
+  ctx.fillStyle =
+    sky;
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /* Horizon light */
+
+  const horizon =
+    ctx.createRadialGradient(
+      width * .5,
+      height * .76,
+      0,
+      width * .5,
+      height * .76,
+      Math.max(
+        width,
+        height
+      ) * .65
+    );
+
+
+  horizon.addColorStop(
+    0,
+    "rgba(185,215,112,.13)"
+  );
+
+
+  horizon.addColorStop(
+    .35,
+    "rgba(76,150,94,.06)"
+  );
+
+
+  horizon.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+
+  ctx.fillStyle =
+    horizon;
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+function animate() {
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  drawSky();
+
+
+  stars.forEach(
+    star => {
+
+      star.update();
+      star.draw();
+
+    }
+  );
+
+
+  drawMountains();
+
+
+  /* Creatures behind foreground grass */
+
+  creatures.forEach(
+    creature => {
+
+      creature.update();
+      creature.draw();
+
+    }
+  );
+
+
+  leaves.forEach(
+    leaf => {
+
+      leaf.update();
+      leaf.draw();
+
+    }
+  );
+
+
+  fireflies.forEach(
+    firefly => {
+
+      firefly.update();
+      firefly.draw();
+
+    }
+  );
+
+
+  drawGrass();
+
+
+  requestAnimationFrame(
+    animate
+  );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+animate();
+
+
+/* =====================================================
+   FOUNDER DROPDOWN
+===================================================== */
+
+const founderMenu =
+  document.getElementById(
+    "founderMenu"
+  );
+
+
+const founderButton =
+  document.getElementById(
+    "founderButton"
+  );
+
+
+founderButton.addEventListener(
+  "click",
+  event => {
+
+    event.stopPropagation();
+
+
+    const active =
+      founderMenu.classList.toggle(
+        "active"
+      );
+
+
+    founderButton.setAttribute(
+      "aria-expanded",
+      active
+    );
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      !founderMenu.contains(
+        event.target
+      )
+    ) {
+
+      founderMenu.classList.remove(
+        "active"
+      );
+
+
+      founderButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+  }
+);
+
+</script>
+
 </body>
 </html>
+
+           
