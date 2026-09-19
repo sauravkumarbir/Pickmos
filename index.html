@@ -8,14 +8,14 @@
   <title>Pickmos AI — Create Anything</title>
 
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFNKX6LRHS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -38,7 +38,7 @@
     body {
       font-family: "Inter", sans-serif;
       color: #fff;
-      background: #06120e;
+      background: #000;          /* ← solid black */
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -70,7 +70,7 @@
     }
 
     /* =====================================================
-       BACKGROUND
+       BACKGROUND (simplified – pure black)
     ===================================================== */
 
     #ai-background {
@@ -80,121 +80,10 @@
       height: 100%;
       z-index: -20;
       pointer-events: none;
+      background: #000;          /* solid black canvas */
     }
 
-    .ai-grid {
-      position: fixed;
-      inset: 0;
-      z-index: -18;
-      pointer-events: none;
-      opacity: .12;
-
-      background-image:
-        linear-gradient(
-          rgba(210,255,205,.055) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(210,255,205,.055) 1px,
-          transparent 1px
-        );
-
-      background-size: 48px 48px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          transparent,
-          #000 15%,
-          #000 80%,
-          transparent
-        );
-
-      -webkit-mask-image:
-        linear-gradient(
-          to bottom,
-          transparent,
-          #000 15%,
-          #000 80%,
-          transparent
-        );
-    }
-
-    .glow {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(110px);
-      z-index: -19;
-    }
-
-    .glow-one {
-      width: 600px;
-      height: 600px;
-      top: -300px;
-      left: -150px;
-      background: rgba(255, 182, 72, .14);
-      animation: glowOne 14s ease-in-out infinite;
-    }
-
-    .glow-two {
-      width: 700px;
-      height: 700px;
-      right: -350px;
-      top: 15%;
-      background: rgba(70, 210, 125, .13);
-      animation: glowTwo 17s ease-in-out infinite;
-    }
-
-    .glow-three {
-      width: 600px;
-      height: 600px;
-      left: 25%;
-      bottom: -350px;
-      background: rgba(85, 130, 255, .10);
-      animation: glowThree 18s ease-in-out infinite;
-    }
-
-    @keyframes glowOne {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(120px,80px); }
-    }
-
-    @keyframes glowTwo {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(-120px,80px); }
-    }
-
-    @keyframes glowThree {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(80px,-90px); }
-    }
-
-    .background-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      pointer-events: none;
-
-      background:
-        radial-gradient(
-          ellipse at 50% 75%,
-          rgba(140,220,125,.10),
-          transparent 42%
-        ),
-        radial-gradient(
-          circle at 75% 8%,
-          rgba(210,230,255,.07),
-          transparent 25%
-        ),
-        radial-gradient(
-          ellipse at center,
-          transparent 20%,
-          rgba(0,0,0,.22) 65%,
-          rgba(0,0,0,.72) 100%
-        );
-    }
+    /* removed .ai-grid, .glow, .background-overlay */
 
     /* =====================================================
        NAVBAR
@@ -204,27 +93,14 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-
-      /* background:
-        linear-gradient(
-          to bottom,
-          rgba(4,13,10,.94),
-          rgba(4,13,10,.70)
-        ); */
-
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-
-      /* border-bottom:
-        1px solid rgba(190,255,190,.08); */
-
       padding: 15px 0;
     }
 
     .nav-inner {
       width: min(900px, 92%);
       margin: auto;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -234,7 +110,6 @@
       display: flex;
       align-items: center;
       gap: 9px;
-
       font-size: 20px;
       font-weight: 800;
     }
@@ -242,13 +117,10 @@
     .logo-mark {
       width: 32px;
       height: 32px;
-
       display: grid;
       place-items: center;
-
       background: #fff;
       color: red;
-
       border-radius: 8px;
     }
 
@@ -264,33 +136,20 @@
       display: flex;
       align-items: center;
       gap: 8px;
-
       padding: 8px 13px;
-
       color: #aaa;
-
-      background:
-        rgba(10,25,18,.55);
-
-      border:
-        1px solid rgba(200,255,195,.10);
-
+      background: rgba(20, 20, 20, .7);
+      border: 1px solid rgba(255, 255, 255, .12);
       border-radius: 9px;
-
       font-size: 14px;
       font-weight: 600;
-
       transition: .25s ease;
     }
 
     .founder-button:hover {
       color: #fff;
-
-      background:
-        rgba(25,55,38,.72);
-
-      border-color:
-        rgba(200,255,195,.2);
+      background: rgba(40, 40, 40, .85);
+      border-color: rgba(255, 255, 255, .25);
     }
 
     .founder-button svg {
@@ -310,70 +169,44 @@
 
     .founder-dropdown {
       position: absolute;
-
       top: calc(100% + 12px);
       right: 0;
-
       width: 290px;
-
       padding: 18px;
-
-      background:
-        rgba(6,17,13,.97);
-
+      background: rgba(10, 10, 10, .97);
       backdrop-filter: blur(25px);
-
-      border:
-        1px solid rgba(200,255,195,.11);
-
+      border: 1px solid rgba(255, 255, 255, .12);
       border-radius: 16px;
-
-      box-shadow:
-        0 30px 90px rgba(0,0,0,.7);
-
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .7);
       opacity: 0;
       visibility: hidden;
-
-      transform:
-        translateY(-10px)
-        scale(.96);
-
+      transform: translateY(-10px) scale(.96);
       transition: .25s ease;
     }
 
     .founder-menu.active .founder-dropdown {
       opacity: 1;
       visibility: visible;
-
-      transform:
-        translateY(0)
-        scale(1);
+      transform: translateY(0) scale(1);
     }
 
     .founder-profile {
       display: flex;
       align-items: center;
       gap: 12px;
-
       padding-bottom: 15px;
       margin-bottom: 15px;
-
-      border-bottom:
-        1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
     .founder-avatar {
       width: 52px;
       height: 52px;
-
       display: grid;
       place-items: center;
-
       border-radius: 13px;
-
       background: #fff;
       color: #050805;
-
       font-weight: 800;
     }
 
@@ -391,21 +224,16 @@
       display: flex;
       align-items: center;
       gap: 10px;
-
       padding: 9px;
-
       color: #999;
-
       font-size: 12px;
-
       border-radius: 8px;
-
       transition: .2s ease;
     }
 
     .founder-contact a:hover {
       color: #fff;
-      background: rgba(150,255,160,.06);
+      background: rgba(255, 255, 255, .06);
     }
 
     /* =====================================================
@@ -420,7 +248,6 @@
 
     .hero {
       min-height: 650px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -428,93 +255,52 @@
 
     .launching-soon {
       width: fit-content;
-
       margin: 0 auto 38px;
-
       padding: 9px 19px;
-
-      border:
-        1px solid rgba(205,255,196,.16);
-
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 100px;
-
-      background:
-        rgba(10,25,18,.65);
-
+      background: rgba(20, 20, 20, .7);
       color: #fff;
-
       font-size: 12px;
       font-weight: 700;
-
       letter-spacing: 1.5px;
       text-transform: uppercase;
-
-      box-shadow:
-        0 8px 40px rgba(0,0,0,.25);
-
-      animation:
-        launchPulse 3s ease-in-out infinite;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .4);
+      animation: launchPulse 3s ease-in-out infinite;
     }
 
     @keyframes launchPulse {
-      0%,100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-4px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
     }
 
     h1 {
       max-width: 760px;
       margin: 0 auto 20px;
-
       text-align: center;
-
-      font-size:
-        clamp(42px, 7vw, 68px);
-
+      font-size: clamp(42px, 7vw, 68px);
       line-height: 1.05;
-
       letter-spacing: -3px;
     }
 
     h1 span {
-      background:
-        linear-gradient(
-          90deg,
-          #7c9d7e,
-          #d8efc9,
-          #7c9d7e
-        );
-
+      background: linear-gradient(90deg, #aaa, #fff, #aaa);
       background-size: 200% auto;
-
       -webkit-background-clip: text;
       background-clip: text;
-
       -webkit-text-fill-color: transparent;
-
-      animation:
-        textShine 5s linear infinite;
+      animation: textShine 5s linear infinite;
     }
 
     @keyframes textShine {
-      to {
-        background-position: 200% center;
-      }
+      to { background-position: 200% center; }
     }
 
     .subtitle {
       max-width: 560px;
-
       margin: 0 auto;
-
-      color: #8fa095;
-
+      color: #999;
       text-align: center;
-
       font-size: 16px;
     }
 
@@ -524,108 +310,67 @@
 
     .generator {
       margin-top: 60px;
-
       padding: 24px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(10,25,20,.84),
-          rgba(5,14,12,.72)
-        );
-
+      background: rgba(20, 20, 20, .85);
       backdrop-filter: blur(18px);
-
-      border:
-        1px solid rgba(180,255,190,.10);
-
+      border: 1px solid rgba(255, 255, 255, .12);
       border-radius: 18px;
-
-      box-shadow:
-        0 25px 80px rgba(0,0,0,.38);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .5);
     }
 
     textarea {
       width: 100%;
       min-height: 115px;
-
       padding: 16px;
-
       color: #fff;
-
-      background:
-        rgba(3,10,8,.8);
-
-      border:
-        1px solid rgba(180,255,190,.09);
-
+      background: rgba(10, 10, 10, .9);
+      border: 1px solid rgba(255, 255, 255, .1);
       border-radius: 12px;
-
       outline: none;
-
       resize: vertical;
-
       font-family: inherit;
       font-size: 15px;
     }
 
     textarea:focus {
-      border-color:
-        rgba(200,255,200,.28);
-
-      box-shadow:
-        0 0 30px rgba(120,230,130,.04);
+      border-color: rgba(255, 255, 255, .3);
+      box-shadow: 0 0 30px rgba(255, 255, 255, .05);
     }
 
     textarea::placeholder {
-      color: #5f6d62;
+      color: #666;
     }
 
     .controls {
       display: flex;
       gap: 12px;
-
       margin-top: 16px;
       margin-bottom: 16px;
-
       flex-wrap: wrap;
     }
 
     select {
       padding: 10px 14px;
-
       color: #fff;
-
-      background: #080f0c;
-
-      border:
-        1px solid rgba(200,255,195,.1);
-
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, .12);
       border-radius: 8px;
     }
 
     .generate-btn {
       width: 100%;
-
       padding: 14px 28px;
-
-      color: #071009;
-
-      background: #eaffdf;
-
+      color: #000;
+      background: #fff;
       border-radius: 10px;
-
       font-size: 15px;
       font-weight: 700;
-
       transition: .25s ease;
     }
 
     .generate-btn:hover {
       transform: translateY(-2px);
-
-      box-shadow:
-        0 12px 35px rgba(150,240,150,.12);
+      box-shadow: 0 12px 35px rgba(255, 255, 255, .15);
     }
 
     /* =====================================================
@@ -642,47 +387,30 @@
     }
 
     .section-sub {
-      color: #748177;
+      color: #777;
       font-size: 14px;
       margin-bottom: 24px;
     }
 
     .features {
       display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(200px, 1fr)
-        );
-
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 14px;
     }
 
     .feature {
       padding: 20px;
-
-      background:
-        rgba(8,22,16,.68);
-
+      background: rgba(20, 20, 20, .75);
       backdrop-filter: blur(14px);
-
-      border:
-        1px solid rgba(180,255,190,.075);
-
+      border: 1px solid rgba(255, 255, 255, .1);
       border-radius: 13px;
-
       transition: .3s ease;
     }
 
     .feature:hover {
       transform: translateY(-5px);
-
-      border-color:
-        rgba(180,255,190,.16);
-
-      box-shadow:
-        0 20px 50px rgba(0,0,0,.3);
+      border-color: rgba(255, 255, 255, .2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
     }
 
     .feature h3 {
@@ -691,7 +419,7 @@
     }
 
     .feature p {
-      color: #708078;
+      color: #888;
       font-size: 13px;
     }
 
@@ -702,20 +430,10 @@
     footer {
       position: relative;
       z-index: 5;
-
       width: 100%;
-
       margin-top: auto;
-
-      padding:
-        28px 20px;
-
-      /* border-top:
-        1px solid rgba(180,255,190,.08); */
-
-      background:
-        rgba(3,11,8,.88);
-
+      padding: 28px 20px;
+      background: rgba(10, 10, 10, .9);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
@@ -723,11 +441,9 @@
     .footer-inner {
       width: min(900px, 100%);
       margin: auto;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       min-height: 25px;
     }
 
@@ -735,7 +451,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
       width: 100%;
     }
 
@@ -744,18 +459,13 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-
-      color: #657269;
-
+      color: #777;
       font-size: 12px;
-
-      transition:
-        color .2s ease,
-        transform .2s ease;
+      transition: color .2s ease, transform .2s ease;
     }
 
     .footer-links a:hover {
-      color: #d9f7d0;
+      color: #fff;
       transform: translateY(-2px);
     }
 
@@ -766,11 +476,10 @@
     }
 
     /* =====================================================
-       MOBILE FOOTER
+       MOBILE
     ===================================================== */
 
     @media (max-width: 600px) {
-
       .container {
         width: 92%;
         padding-top: 45px;
@@ -804,21 +513,15 @@
       }
 
       footer {
-        padding:
-          25px 16px;
+        padding: 25px 16px;
       }
 
       .footer-links a {
         font-size: 12px;
       }
-
-      .ai-grid {
-        background-size: 38px 38px;
-      }
     }
 
     @media (max-width: 380px) {
-
       .founder-button {
         padding: 7px 9px;
         font-size: 12px;
@@ -831,2081 +534,102 @@
       .footer-links a {
         font-size: 11px;
       }
-
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       *,
       *::before,
       *::after {
         animation: none !important;
         transition: none !important;
       }
-
     }
   </style>
 </head>
-
 
 <body>
 
 <div class="page">
 
-  <!-- =====================================================
-       BACKGROUND
-  ===================================================== -->
-
+  <!-- Simple black canvas (no animation needed) -->
   <canvas id="ai-background"></canvas>
-
-  <div class="ai-grid"></div>
-
-  <div class="glow glow-one"></div>
-  <div class="glow glow-two"></div>
-  <div class="glow glow-three"></div>
-
-  <div class="background-overlay"></div>
-
 
   <!-- =====================================================
        NAVBAR
   ===================================================== -->
 
   <header class="navbar">
-
     <div class="nav-inner">
-
-      <!-- <a href="#" class="logo">
-        <div class="logo-mark">P</div>
-        Pickmos
-      </a> -->
-
-
-      <!-- <div
-        class="founder-menu"
-        id="founderMenu"
-      >
-
-        <button
-          class="founder-button"
-          id="founderButton"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <circle
-              cx="12"
-              cy="8"
-              r="4"
-            />
-
-            <path
-              d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"
-            />
-          </svg>
-
-          SauravBir
-
-          <svg
-            class="founder-arrow"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <polyline
-              points="6 9 12 15 18 9"
-            />
-          </svg>
-
-        </button>
-
-
-        <div class="founder-dropdown">
-
-          <div class="founder-profile">
-
-            <div class="founder-avatar">
-              SB
-            </div>
-
-            <div>
-
-              <div class="founder-name">
-                Saurav Bir
-              </div>
-
-              <div class="founder-role">
-                Founder, Pickmos AI
-              </div>
-
-            </div>
-
-          </div> -->
-
-
-          <!-- <div class="founder-contact">
-
-            <a href="mailto:sauravbir6@gmail.com">
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-
-                <rect
-                  x="3"
-                  y="5"
-                  width="18"
-                  height="14"
-                  rx="2"
-                />
-
-                <polyline
-                  points="3,7 12,13 21,7"
-                />
-
-              </svg>
-
-              sauravbir6@gmail.com
-
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div> -->
-
+      <!-- logo / founder menu remain commented as in original -->
+    </div>
   </header>
-
 
   <!-- =====================================================
        MAIN
   ===================================================== -->
 
   <main>
-
     <div class="container">
       <div class="launching-soon">
-          ✦ Pickmos ✦
-        </div> 
-           <p class="subtitle">
-          Contact - sauravbir6@gmail.com
-        </p>
-
-      <!-- <section class="hero">
-
-        
-
-
-        <h1>
-          Create your own
-          <span>digital world.</span>
-        </h1>
-
-
-        <p class="subtitle">
-          An AI-powered creative playground for turning
-          imagination into something real.
-        </p>
-
-
-        <div class="generator">
-
-          <textarea
-            placeholder="Describe what you want to create..."
-          ></textarea>
-
-
-          <div class="controls">
-
-            <select>
-              <option>Image</option>
-              <option>Character</option>
-              <option>Environment</option>
-              <option>Concept Art</option>
-            </select>
-
-          </div>
-
-
-          <button class="generate-btn">
-            Create
-          </button>
-
-        </div>
-
-      </section> -->
-
-
-      <!-- =====================================================
-           FEATURES
-      ===================================================== -->
-
-      <!-- <section class="features-section">
-
-        <h2 class="section-title">
-          Built for imagination
-        </h2>
-
-        <p class="section-sub">
-          Explore, create and bring your ideas to life.
-        </p>
-
-
-        <div class="features">
-
-          <div class="feature">
-
-            <h3>
-              AI Creation
-            </h3>
-
-            <p>
-              Turn simple ideas into unique visual concepts.
-            </p>
-
-          </div>
-
-
-          <div class="feature">
-
-            <h3>
-              Original Worlds
-            </h3>
-
-            <p>
-              Build characters, environments and stories.
-            </p>
-
-          </div>
-
-
-          <div class="feature">
-
-            <h3>
-              Indie First
-            </h3>
-
-            <p>
-              Designed around creativity and experimentation.
-            </p>
-
-          </div>
-
-        </div>
-
-      </section> -->
-
+        ✦ Pickmos ✦
+      </div>
+      <p class="subtitle">
+        Contact - sauravbir6@gmail.com
+      </p>
     </div>
-
   </main>
 
-
   <!-- =====================================================
-       FOOTER — ALWAYS LAST
+       FOOTER
   ===================================================== -->
 
   <footer>
-
     <div class="footer-inner">
-
       <div class="footer-links">
-
         <a
           href="https://x.com/sauravbir"
           target="_blank"
           rel="noopener noreferrer"
         >
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-            />
-
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
-
           @sauravbir
-
         </a>
-
       </div>
-
     </div>
-
   </footer>
 
 </div>
 
-
-<!-- =====================================================
-     JAVASCRIPT
-     INDIE MONSTER WORLD
-===================================================== -->
-
 <script>
+  // Minimal canvas setup – just fills pure black
+  const canvas = document.getElementById("ai-background");
+  const ctx = canvas.getContext("2d");
 
-const canvas =
-  document.getElementById("ai-background");
+  function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-const ctx =
-  canvas.getContext("2d");
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
 
-let width;
-let height;
-
-let dpr =
-  Math.min(
-    window.devicePixelRatio || 1,
-    2
-  );
-
-
-let stars = [];
-let fireflies = [];
-let leaves = [];
-let creatures = [];
-
-
-let mouse = {
-  x: null,
-  y: null
-};
-
-
-/* =====================================================
-   RESIZE
-===================================================== */
-
-function resizeCanvas() {
-
-  width =
-    window.innerWidth;
-
-  height =
-    window.innerHeight;
-
-
-  canvas.width =
-    width * dpr;
-
-  canvas.height =
-    height * dpr;
-
-
-  canvas.style.width =
-    width + "px";
-
-  canvas.style.height =
-    height + "px";
-
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-
-  createWorld();
-
-}
-
-
-/* =====================================================
-   MOUSE
-===================================================== */
-
-window.addEventListener(
-  "mousemove",
-  e => {
-
-    mouse.x =
-      e.clientX;
-
-    mouse.y =
-      e.clientY;
-
-  }
-);
-
-
-window.addEventListener(
-  "mouseleave",
-  () => {
-
-    mouse.x = null;
-    mouse.y = null;
-
-  }
-);
-
-
-/* =====================================================
-   STARS
-===================================================== */
-
-class Star {
-
-  constructor() {
-
-    this.x =
-      Math.random() * width;
-
-    this.y =
-      Math.random() *
-      height *
-      .63;
-
-    this.size =
-      Math.random() * 1.5 + .3;
-
-    this.alpha =
-      Math.random() * .45 + .1;
-
-    this.phase =
-      Math.random() *
-      Math.PI * 2;
-
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, width, height);
   }
 
-
-  update() {
-
-    this.phase += .01;
-
-  }
-
-
-  draw() {
-
-    const pulse =
-      .55 +
-      Math.sin(this.phase) * .35;
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      `rgba(
-        230,
-        245,
-        220,
-        ${this.alpha * pulse}
-      )`;
-
-
-    ctx.fill();
-
-  }
-
-}
-
-
-/* =====================================================
-   FIREFLIES
-===================================================== */
-
-class Firefly {
-
-  constructor() {
-    this.reset(true);
-  }
-
-
-  reset(first = false) {
-
-    this.x =
-      Math.random() * width;
-
-    this.y =
-      first
-        ? Math.random() * height
-        : height + 20;
-
-    this.radius =
-      Math.random() * 1.8 + .7;
-
-    this.speed =
-      Math.random() * .18 + .06;
-
-    this.phase =
-      Math.random() *
-      Math.PI * 2;
-
-  }
-
-
-  update() {
-
-    this.y -= this.speed;
-
-    this.x +=
-      Math.sin(
-        this.phase
-      ) * .12;
-
-    this.phase += .025;
-
-
-    if (
-      mouse.x !== null &&
-      mouse.y !== null
-    ) {
-
-      const dx =
-        this.x - mouse.x;
-
-      const dy =
-        this.y - mouse.y;
-
-      const distance =
-        Math.sqrt(
-          dx * dx +
-          dy * dy
-        );
-
-
-      if (distance < 120) {
-
-        this.x +=
-          dx * .004;
-
-        this.y +=
-          dy * .004;
-
-      }
-
-    }
-
-
-    if (this.y < -20) {
-      this.reset();
-    }
-
-  }
-
-
-  draw() {
-
-    const alpha =
-      .35 +
-      Math.sin(this.phase) *
-      .25;
-
-
-    const glow =
-      ctx.createRadialGradient(
-        this.x,
-        this.y,
-        0,
-        this.x,
-        this.y,
-        12
-      );
-
-
-    glow.addColorStop(
-      0,
-      `rgba(210,255,135,${alpha})`
-    );
-
-
-    glow.addColorStop(
-      1,
-      "rgba(210,255,135,0)"
-    );
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      this.x,
-      this.y,
-      12,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle = glow;
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      this.x,
-      this.y,
-      this.radius,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      `rgba(230,255,175,${alpha})`;
-
-    ctx.fill();
-
-  }
-
-}
-
-
-/* =====================================================
-   LEAVES
-===================================================== */
-
-class Leaf {
-
-  constructor() {
-    this.reset(true);
-  }
-
-
-  reset(first = false) {
-
-    this.x =
-      Math.random() * width;
-
-    this.y =
-      first
-        ? Math.random() * height
-        : -30;
-
-    this.size =
-      Math.random() * 3 + 2;
-
-    this.speed =
-      Math.random() * .15 + .05;
-
-    this.phase =
-      Math.random() * 6.28;
-
-  }
-
-
-  update() {
-
-    this.y += this.speed;
-
-    this.x +=
-      Math.sin(this.phase) * .12;
-
-    this.phase += .012;
-
-
-    if (this.y > height + 30) {
-      this.reset();
-    }
-
-  }
-
-
-  draw() {
-
-    ctx.save();
-
-    ctx.translate(
-      this.x,
-      this.y
-    );
-
-    ctx.rotate(
-      this.phase
-    );
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      0,
-      this.size * 1.7,
-      this.size,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "rgba(100,180,100,.16)";
-
-    ctx.fill();
-
-    ctx.restore();
-
-  }
-
-}
-
-
-/* =====================================================
-   ORIGINAL INDIE CREATURES
-===================================================== */
-
-class Creature {
-
-  constructor(type) {
-
-    this.type = type;
-
-    this.x =
-      Math.random() * width;
-
-    this.baseY =
-      height *
-      (.55 +
-       Math.random() * .28);
-
-    this.y =
-      this.baseY;
-
-    this.size =
-      18 +
-      Math.random() * 13;
-
-    this.speed =
-      (.15 +
-       Math.random() * .18)
-      *
-      (Math.random() > .5 ? 1 : -1);
-
-    this.phase =
-      Math.random() * 6.28;
-
-    this.bob =
-      Math.random() * 6.28;
-
-    this.direction =
-      this.speed > 0 ? 1 : -1;
-
-  }
-
-
-  update() {
-
-    this.x += this.speed;
-
-    this.phase += .025;
-
-    this.bob += .035;
-
-
-    this.y =
-      this.baseY +
-      Math.sin(this.bob) * 3;
-
-
-    if (
-      this.x >
-      width + 70
-    ) {
-
-      this.x = -70;
-
-    }
-
-
-    if (
-      this.x <
-      -70
-    ) {
-
-      this.x =
-        width + 70;
-
-    }
-
-
-    /* Move slightly away from cursor */
-
-    if (
-      mouse.x !== null &&
-      mouse.y !== null
-    ) {
-
-      const dx =
-        this.x -
-        mouse.x;
-
-      const dy =
-        this.y -
-        mouse.y;
-
-      const distance =
-        Math.sqrt(
-          dx * dx +
-          dy * dy
-        );
-
-
-      if (
-        distance < 150
-      ) {
-
-        this.x +=
-          dx * .002;
-
-        this.y +=
-          dy * .002;
-
-      }
-
-    }
-
-  }
-
-
-  draw() {
-
-    ctx.save();
-
-    ctx.translate(
-      this.x,
-      this.y
-    );
-
-
-    if (
-      this.direction < 0
-    ) {
-
-      ctx.scale(
-        -1,
-        1
-      );
-
-    }
-
-
-    if (
-      this.type === "sprout"
-    ) {
-
-      this.drawSprout();
-
-    }
-
-
-    if (
-      this.type === "ember"
-    ) {
-
-      this.drawEmber();
-
-    }
-
-
-    if (
-      this.type === "moss"
-    ) {
-
-      this.drawMoss();
-
-    }
-
-
-    if (
-      this.type === "moon"
-    ) {
-
-      this.drawMoon();
-
-    }
-
-
-    ctx.restore();
-
-  }
-
-
-  /* ===================================================
-     SPROUT CREATURE
-  =================================================== */
-
-  drawSprout() {
-
-    const s =
-      this.size;
-
-
-    /* shadow */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      s * .78,
-      s * .75,
-      s * .22,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "rgba(0,0,0,.25)";
-
-    ctx.fill();
-
-
-    /* body */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      0,
-      s * .72,
-      s * .75,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#6fa66b";
-
-    ctx.fill();
-
-
-    /* ears */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      -s * .48,
-      -s * .35
-    );
-
-    ctx.lineTo(
-      -s * .72,
-      -s * .9
-    );
-
-    ctx.lineTo(
-      -s * .18,
-      -s * .56
-    );
-
-    ctx.closePath();
-
-    ctx.fillStyle =
-      "#83b978";
-
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      s * .48,
-      -s * .35
-    );
-
-    ctx.lineTo(
-      s * .72,
-      -s * .9
-    );
-
-    ctx.lineTo(
-      s * .18,
-      -s * .56
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-
-    /* leaf */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      -s * .95,
-      s * .18,
-      s * .5,
-      -.35,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#b6d985";
-
-    ctx.fill();
-
-
-    /* eyes */
-
-    ctx.fillStyle =
-      "#102118";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      -s * .25,
-      -s * .05,
-      s * .09,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      s * .25,
-      -s * .05,
-      s * .09,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-
-    /* smile */
-
-    ctx.beginPath();
-
-    ctx.arc(
-      0,
-      s * .10,
-      s * .20,
-      0,
-      Math.PI
-    );
-
-    ctx.strokeStyle =
-      "#102118";
-
-    ctx.lineWidth = 1.5;
-
-    ctx.stroke();
-
-  }
-
-
-  /* ===================================================
-     EMBER CREATURE
-  =================================================== */
-
-  drawEmber() {
-
-    const s =
-      this.size;
-
-
-    /* glow */
-
-    const glow =
-      ctx.createRadialGradient(
-        0,
-        0,
-        0,
-        0,
-        0,
-        s * 1.8
-      );
-
-    glow.addColorStop(
-      0,
-      "rgba(255,180,80,.15)"
-    );
-
-    glow.addColorStop(
-      1,
-      "rgba(255,180,80,0)"
-    );
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      0,
-      0,
-      s * 1.8,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      glow;
-
-    ctx.fill();
-
-
-    /* body */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      0,
-      s * .72,
-      s * .62,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#b87952";
-
-    ctx.fill();
-
-
-    /* flame tail */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      -s * .55,
-      s * .05
-    );
-
-    ctx.quadraticCurveTo(
-      -s * 1.2,
-      -s * .25,
-      -s * 1.05,
-      -s * .75
-    );
-
-    ctx.quadraticCurveTo(
-      -s * .65,
-      -s * .52,
-      -s * .48,
-      -s * .75
-    );
-
-    ctx.quadraticCurveTo(
-      -s * .30,
-      -s * .30,
-      -s * .55,
-      s * .05
-    );
-
-    ctx.fillStyle =
-      "#e5a65c";
-
-    ctx.fill();
-
-
-    /* ears */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      -s * .45,
-      -s * .38
-    );
-
-    ctx.lineTo(
-      -s * .65,
-      -s * .85
-    );
-
-    ctx.lineTo(
-      -s * .12,
-      -s * .53
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      s * .45,
-      -s * .38
-    );
-
-    ctx.lineTo(
-      s * .65,
-      -s * .85
-    );
-
-    ctx.lineTo(
-      s * .12,
-      -s * .53
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-
-    /* eyes */
-
-    ctx.fillStyle =
-      "#21130d";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      -s * .24,
-      -s * .04,
-      s * .09,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.arc(
-      s * .24,
-      -s * .04,
-      s * .09,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-  }
-
-
-  /* ===================================================
-     MOSS CREATURE
-  =================================================== */
-
-  drawMoss() {
-
-    const s =
-      this.size;
-
-
-    /* body */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      0,
-      s * .85,
-      s * .58,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#507d67";
-
-    ctx.fill();
-
-
-    /* moss */
-
-    ctx.beginPath();
-
-    ctx.arc(
-      -s * .25,
-      -s * .45,
-      s * .32,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.arc(
-      s * .10,
-      -s * .52,
-      s * .28,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.arc(
-      s * .38,
-      -s * .38,
-      s * .25,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#8cb36b";
-
-    ctx.fill();
-
-
-    /* feet */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      -s * .48,
-      s * .45,
-      s * .28,
-      s * .16,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.ellipse(
-      s * .48,
-      s * .45,
-      s * .28,
-      s * .16,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#395846";
-
-    ctx.fill();
-
-
-    /* eyes */
-
-    ctx.fillStyle =
-      "#d9f0c5";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      -s * .27,
-      -s * .02,
-      s * .08,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.arc(
-      s * .27,
-      -s * .02,
-      s * .08,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-  }
-
-
-  /* ===================================================
-     MOON CREATURE
-  =================================================== */
-
-  drawMoon() {
-
-    const s =
-      this.size;
-
-
-    /* body */
-
-    ctx.beginPath();
-
-    ctx.ellipse(
-      0,
-      0,
-      s * .65,
-      s * .7,
-      0,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      "#687ca6";
-
-    ctx.fill();
-
-
-    /* moon ears */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      -s * .4,
-      -s * .42
-    );
-
-    ctx.lineTo(
-      -s * .55,
-      -s * 1.0
-    );
-
-    ctx.lineTo(
-      -s * .08,
-      -s * .55
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      s * .4,
-      -s * .42
-    );
-
-    ctx.lineTo(
-      s * .55,
-      -s * 1.0
-    );
-
-    ctx.lineTo(
-      s * .08,
-      -s * .55
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-
-    /* crescent mark */
-
-    ctx.beginPath();
-
-    ctx.arc(
-      0,
-      -s * .15,
-      s * .22,
-      -.8,
-      1.9
-    );
-
-    ctx.strokeStyle =
-      "#cbd8ef";
-
-    ctx.lineWidth =
-      s * .09;
-
-    ctx.stroke();
-
-
-    /* eyes */
-
-    ctx.fillStyle =
-      "#11182a";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      -s * .22,
-      s * .05,
-      s * .08,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.arc(
-      s * .22,
-      s * .05,
-      s * .08,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-  }
-
-}
-
-
-/* =====================================================
-   MOUNTAINS
-===================================================== */
-
-function drawMountains() {
-
-  const base =
-    height * .76;
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    base
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .14,
-    base - 100,
-    width * .27,
-    base - 35
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .40,
-    base - 125,
-    width * .54,
-    base - 45
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .70,
-    base - 115,
-    width * .84,
-    base - 32
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .94,
-    base - 70,
-    width,
-    base - 25
-  );
-
-
-  ctx.lineTo(
-    width,
-    height
-  );
-
-  ctx.lineTo(
-    0,
-    height
-  );
-
-  ctx.closePath();
-
-
-  const gradient =
-    ctx.createLinearGradient(
-      0,
-      base - 130,
-      0,
-      height
-    );
-
-
-  gradient.addColorStop(
-    0,
-    "rgba(18,48,37,.48)"
-  );
-
-
-  gradient.addColorStop(
-    1,
-    "rgba(2,12,8,.9)"
-  );
-
-
-  ctx.fillStyle =
-    gradient;
-
-  ctx.fill();
-
-
-  /* foreground */
-
-  const foreground =
-    height * .87;
-
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    foreground
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .16,
-    foreground - 45,
-    width * .32,
-    foreground
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .53,
-    foreground - 60,
-    width * .73,
-    foreground - 5
-  );
-
-
-  ctx.quadraticCurveTo(
-    width * .88,
-    foreground - 35,
-    width,
-    foreground
-  );
-
-
-  ctx.lineTo(
-    width,
-    height
-  );
-
-  ctx.lineTo(
-    0,
-    height
-  );
-
-  ctx.closePath();
-
-
-  ctx.fillStyle =
-    "rgba(2,10,7,.91)";
-
-  ctx.fill();
-
-}
-
-
-/* =====================================================
-   GRASS
-===================================================== */
-
-function drawGrass() {
-
-  const amount =
-    Math.min(
-      180,
-      Math.floor(width / 7)
-    );
-
-
-  ctx.strokeStyle =
-    "rgba(65,120,70,.22)";
-
-  ctx.lineWidth = 1;
-
-
-  for (
-    let i = 0;
-    i < amount;
-    i++
-  ) {
-
-    const x =
-      (i / amount) *
-      width +
-      Math.sin(i * 4.2) *
-      12;
-
-
-    const random =
-      Math.abs(
-        Math.sin(i * 53.23)
-      );
-
-
-    const h =
-      10 +
-      random * 35;
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      x,
-      height
-    );
-
-
-    ctx.quadraticCurveTo(
-      x + Math.sin(i) * 4,
-      height - h * .5,
-
-      x + Math.sin(i) * 7,
-      height - h
-    );
-
-
-    ctx.stroke();
-
-  }
-
-}
-
-
-/* =====================================================
-   CREATE WORLD
-===================================================== */
-
-function createWorld() {
-
-  stars = [];
-  fireflies = [];
-  leaves = [];
-  creatures = [];
-
-
-  const mobile =
-    width < 700;
-
-
-  for (
-    let i = 0;
-    i < (mobile ? 35 : 80);
-    i++
-  ) {
-
-    stars.push(
-      new Star()
-    );
-
-  }
-
-
-  for (
-    let i = 0;
-    i < (mobile ? 12 : 28);
-    i++
-  ) {
-
-    fireflies.push(
-      new Firefly()
-    );
-
-  }
-
-
-  for (
-    let i = 0;
-    i < (mobile ? 5 : 14);
-    i++
-  ) {
-
-    leaves.push(
-      new Leaf()
-    );
-
-  }
-
-
-  /* Original creatures */
-
-  const types = [
-    "sprout",
-    "ember",
-    "moss",
-    "moon"
-  ];
-
-
-  const creatureCount =
-    mobile ? 3 : 6;
-
-
-  for (
-    let i = 0;
-    i < creatureCount;
-    i++
-  ) {
-
-    creatures.push(
-      new Creature(
-        types[
-          i % types.length
-        ]
-      )
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   SKY
-===================================================== */
-
-function drawSky() {
-
-  const sky =
-    ctx.createLinearGradient(
-      0,
-      0,
-      0,
-      height
-    );
-
-
-  sky.addColorStop(
-    0,
-    "#07120f"
-  );
-
-
-  sky.addColorStop(
-    .40,
-    "#091d18"
-  );
-
-
-  sky.addColorStop(
-    .75,
-    "#0b2419"
-  );
-
-
-  sky.addColorStop(
-    1,
-    "#07130d"
-  );
-
-
-  ctx.fillStyle =
-    sky;
-
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  /* Horizon light */
-
-  const horizon =
-    ctx.createRadialGradient(
-      width * .5,
-      height * .76,
-      0,
-      width * .5,
-      height * .76,
-      Math.max(
-        width,
-        height
-      ) * .65
-    );
-
-
-  horizon.addColorStop(
-    0,
-    "rgba(185,215,112,.13)"
-  );
-
-
-  horizon.addColorStop(
-    .35,
-    "rgba(76,150,94,.06)"
-  );
-
-
-  horizon.addColorStop(
-    1,
-    "rgba(0,0,0,0)"
-  );
-
-
-  ctx.fillStyle =
-    horizon;
-
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-}
-
-
-/* =====================================================
-   ANIMATION
-===================================================== */
-
-function animate() {
-
-  ctx.clearRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  drawSky();
-
-
-  stars.forEach(
-    star => {
-
-      star.update();
-      star.draw();
-
-    }
-  );
-
-
-  drawMountains();
-
-
-  /* Creatures behind foreground grass */
-
-  creatures.forEach(
-    creature => {
-
-      creature.update();
-      creature.draw();
-
-    }
-  );
-
-
-  leaves.forEach(
-    leaf => {
-
-      leaf.update();
-      leaf.draw();
-
-    }
-  );
-
-
-  fireflies.forEach(
-    firefly => {
-
-      firefly.update();
-      firefly.draw();
-
-    }
-  );
-
-
-  drawGrass();
-
-
-  requestAnimationFrame(
-    animate
-  );
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
-
-resizeCanvas();
-
-animate();
-
-
-/* =====================================================
-   FOUNDER DROPDOWN
-===================================================== */
-
-const founderMenu =
-  document.getElementById(
-    "founderMenu"
-  );
-
-
-const founderButton =
-  document.getElementById(
-    "founderButton"
-  );
-
-
-founderButton.addEventListener(
-  "click",
-  event => {
-
-    event.stopPropagation();
-
-
-    const active =
-      founderMenu.classList.toggle(
-        "active"
-      );
-
-
-    founderButton.setAttribute(
-      "aria-expanded",
-      active
-    );
-
-  }
-);
-
-
-document.addEventListener(
-  "click",
-  event => {
-
-    if (
-      !founderMenu.contains(
-        event.target
-      )
-    ) {
-
-      founderMenu.classList.remove(
-        "active"
-      );
-
-
-      founderButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-    }
-
-  }
-);
-
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 </script>
 
 </body>
-</html>
+</html>    
+     
+     
+  
 
            
